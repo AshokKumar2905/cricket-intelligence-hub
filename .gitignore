@@ -1,0 +1,13 @@
+# Prerequisites
+node_modules/
+__pycache__/
+*.pyc
+venv/
+.env
+
+# Tactical Data
+uploads/*
+!uploads/.gitkeep
+
+# Docker
+.docker/
