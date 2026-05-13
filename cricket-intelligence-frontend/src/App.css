@@ -1,0 +1,179 @@
+/* ================= GLOBAL VARIABLES ================= */
+:root {
+  --icc-navy: #06083b;
+  --icc-blue: #00195a;
+  --icc-magenta: #e91052;
+  --icc-sky: #38bdf8;
+  
+  --accent: var(--icc-sky);
+  --accent-bg: rgba(56, 189, 248, 0.1);
+  --accent-border: #0ea5e9;
+  --border: rgba(255, 255, 255, 0.08);
+  --text-h: #f8fafc;
+  --text-p: #94a3b8;
+  --shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  
+  --radius-lg: 24px;
+  --radius-md: 8px;
+  --radius-sm: 2px;
+}
+
+/* ================= RESET & BASE ================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--icc-navy);
+  color: var(--text-h);
+  font-family: 'Inter', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ================= SKELETON SHIMMER ================= */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-effect {
+  background: linear-gradient(90deg, 
+    rgba(255,255,255, 0) 0%, 
+    rgba(255,255,255, 0.05) 50%, 
+    rgba(255,255,255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* ================= TECHNICAL GRID BACKGROUND ================= */
+.grid-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ================= LAYOUT UTILITIES ================= */
+.page-fade-in {
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  background: var(--icc-blue);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover {
+  border-color: var(--icc-sky);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ================= LIVE INDICATORS ================= */
+.live-pulse {
+  width: 8px;
+  height: 8px;
+  background: #ff0000;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+  box-shadow: 0 0 10px #ff0000;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ================= HERO 3D ARCHITECTURE ================= */
+.hero-3d-wrap {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--icc-blue) 0%, var(--icc-navy) 100%);
+  perspective: 1000px;
+}
+
+.perspective-view {
+  transform: rotateX(10deg) rotateY(-5deg);
+  transition: transform 0.5s ease;
+}
+
+.perspective-view:hover {
+  transform: rotateX(0deg) rotateY(0deg);
+}
+
+/* ================= ANALYTICS TABLES ================= */
+.icc-table-container {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  background: var(--icc-blue);
+  border: 1px solid var(--border);
+}
+
+/* Custom Scrollbar for Intelligence Modules */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--icc-navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--icc-magenta);
+}
+
+/* ================= FORM INTERACTION ================= */
+input, select {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  background: rgba(6, 8, 59, 0.6);
+  border: 1px solid var(--border);
+  color: white;
+}
+
+input:focus, select:focus {
+  border-color: var(--icc-magenta) !important;
+  background: var(--icc-navy);
+  box-shadow: 0 0 0 2px rgba(233, 16, 82, 0.2);
+  outline: none;
+}
+
+/* ================= RESPONSIVE ADAPTATION ================= */
+@media (max-width: 768px) {
+  :root {
+    --radius-md: 4px;
+  }
+  
+  .hero-3d-wrap {
+    perspective: none;
+  }
+
+  .perspective-view {
+    transform: none !important;
+  }
+}

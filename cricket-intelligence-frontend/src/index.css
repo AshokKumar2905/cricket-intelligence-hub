@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+/* ================= TACTICAL CYBER DESIGN SYSTEM ================= */
+:root {
+  /* Tactical Cyber Palette */
+  --hex-bg: #05070a;
+  --hex-surface: rgba(16, 18, 27, 0.7);
+  --hex-accent: #00f2ff; /* Cyber Cyan */
+  --hex-danger: #ff0055;
+  --hex-border: rgba(255, 255, 255, 0.08);
+  
+  /* Glassmorphism & Depth */
+  --glass-bg: var(--hex-surface);
+  --glass-border: var(--hex-border);
+  --glass-blur: blur(20px) saturate(180%);
+  
+  /* Typography */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  
+  /* Radii */
+  --radius-xl: 20px;
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  
+  /* Shadows */
+  --shadow-neon: 0 0 20px rgba(0, 242, 255, 0.15);
+  --transition-standard: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ================= RESET & BASE ================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--hex-bg);
+  /* Dark Grid Pattern Overlay */
+  background-image: 
+    linear-gradient(var(--hex-border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--hex-border) 1px, transparent 1px);
+  background-size: 40px 40px;
+  color: var(--text-main);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ================= LAYOUT UTILITIES ================= */
+.page-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= TACTICAL GLASS CARD ================= */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-standard);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card:hover {
+  border-color: var(--hex-accent);
+  box-shadow: var(--shadow-neon);
+  transform: translateY(-2px);
+}
+
+/* ================= INTEL TABLE SYSTEM ================= */
+.icc-table-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th {
+  background: rgba(10, 11, 16, 0.95);
+  color: var(--hex-accent);
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 18px 20px;
+  text-align: left;
+  border-bottom: 2px solid var(--hex-accent);
+}
+
+td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--hex-border);
+  font-size: 13px;
+  font-weight: 600;
+  color: #cbd5e1;
+  transition: var(--transition-standard);
+}
+
+tr:hover td {
+  background: rgba(0, 242, 255, 0.05) !important;
+  color: #fff;
+}
+
+/* ================= FORM ELEMENTS ================= */
+input, select {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--hex-border);
+  color: white;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  transition: var(--transition-standard);
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--hex-accent);
+  box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+}
+
+/* ================= CYAN LIVE PULSE ================= */
+.live-pulse {
+  width: 8px;
+  height: 8px;
+  background: var(--hex-accent);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  margin-right: 8px;
+  box-shadow: 0 0 10px var(--hex-accent);
+}
+
+.live-pulse::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: inherit;
+  border-radius: 50%;
+  animation: pulse-ring 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(3.5); opacity: 0; }
+}
+
+/* ================= SCROLLBAR ================= */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--hex-bg); }
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--hex-accent); }
